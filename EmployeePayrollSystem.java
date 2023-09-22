@@ -10,7 +10,7 @@ public class EmployeePayrollSystem {
     String name;
     int category;
     int salaryPerHour;
-    int workHours, basicSalary, overtime,  tip = 20000, bonus, salary;
+    int workHours, basicSalary, overtime,  tip = 20000, bonus, salary, allowence = 50000;
      
     System.out.print("Name: ");
     name = sc.nextLine();
@@ -25,7 +25,7 @@ public class EmployeePayrollSystem {
 
     basicSalary = workHours*salaryPerHour;
     bonus = overtime*tip;
-    salary = basicSalary + bonus;
+    salary = basicSalary + bonus + allowence;
 
     System.out.println("============================================");
     System.out.println("Basic Salary: " + basicSalary);
