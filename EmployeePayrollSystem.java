@@ -14,6 +14,8 @@ public class EmployeePayrollSystem {
      
     System.out.print("Name: ");
     name = sc.nextLine();
+    System.out.print("Work Period: ");
+    workPeriod = sc.nextLine();
     System.out.print("Category: ");
     category = sc.nextInt();
     System.out.print("Work Hours: ");
