@@ -32,6 +32,7 @@ public class EmployeePayrollSystem {
     System.out.println("============================================");
     System.out.println("Basic Salary: " + basicSalary);
     System.out.println("Bonus: " + bonus);
+    System.out.println("Allowance: " + allowance);
     System.out.println("Salary: " + salary);
 
   }
