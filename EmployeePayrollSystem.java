@@ -6,37 +6,47 @@ public class EmployeePayrollSystem {
         System.out.println("Employee Payroll");
         System.out.println("============================");
 
-        String name, payMethod, workPeriod;
-        int category = 0, workDays, salaryPerDay = 0, basicSalary = 0, overtime, tip = 10000, bonus, salary, allowance = 50000;
+        String name, payMethod, position;
+        int category = 0, workDays, salaryPerDay = 0, basicSalary = 0, overtime,workPeriod, tip = 10000, bonus, salary, allowance = 50000;
 
         System.out.print("Name: ");
         name = sc.nextLine();
-        System.out.print("Work Period (Part Timer/Full Timer): ");
-        workPeriod = sc.nextLine();  
+        System.out.print("Work Period: ");
+        workPeriod = sc.nextInt();
+        sc.nextLine();
+
+        if(workPeriod <= 2){
+            System.out.println("Your Position is Part Timer");
+        }else{
+            System.out.println("Your Position is Full TImer ");
+        }
+
+        System.out.print("Position (Part Timer/Full Timer): ");
+        position = sc.nextLine();  
 
         System.out.print("Work Days: ");
         workDays = sc.nextInt();  
 
-        if (workPeriod.equalsIgnoreCase("Part Timer")) {
+        if (position.equalsIgnoreCase("Part Timer")) {
             System.out.print("Category (1, 2): ");
             category = sc.nextInt();
 
             if (category == 1) {
                 salaryPerDay = 50000;
             } else if (category == 2) {
-                salaryPerDay = 75000;
+                salaryPerDay = 60000;
             } else {
                 System.out.println("Invalid Category");
                 return;
             }
-        } else if (workPeriod.equalsIgnoreCase("Full Timer")) {
+        } else if (position.equalsIgnoreCase("Full Timer")) {
             System.out.print("Category (1, 2, 3 ):");
             category = sc.nextInt();
 
             if (category == 1) {
-                salaryPerDay = 50000;
-            } else if (category == 2) {
                 salaryPerDay = 75000;
+            } else if (category == 2) {
+                salaryPerDay = 85000;
             } else if (category == 3) {
                 salaryPerDay = 100000;
             } else {
