@@ -3,60 +3,27 @@ import java.util.Scanner;
 public class EmployeePayrollSystem {
   public static void main(String args[]){ 
     Scanner sc = new Scanner(System.in);
+    System.out.println("============================================");
     System.out.println("              Employee Payroll              ");
     System.out.println("============================================");
      
-    String name, idNumber, payMethod, position;
-    int workPeriod, category, workDays, overtime, bonus, salary;
-    int salaryPerDay = 0, basicSalary = 0, tip = 10000,  allowance = 50000;
-
+    String name, payMethod;
+    int workPeriod, category, workHours, salaryPerHour, basicSalary, overtime,  tip = 10000, bonus, salary, allowance = 50000;
+     
     System.out.print("Name: ");
     name = sc.nextLine();
-    System.out.print("ID Number: ");
-    idNumber = sc.nextLine();
-    System.out.print("Work Period(year): ");
+    System.out.print("Work Period: ");
     workPeriod = sc.nextInt();
-    sc.nextLine();
-    System.out.print("Position(Part Timer/Full Timer): ");
-    position = sc.nextLine();
-        if(position.equalsIgnoreCase("Part Timer")) {
-            System.out.print("Category(1/2): ");
-            category = sc.nextInt();
-
-            if(category == 1){
-                salaryPerDay = 50000;
-            } else if(category == 2){
-                salaryPerDay = 60000;
-            } else {
-                System.out.print("Invalid category");
-                return;
-            }
-
-        } else if(position.equalsIgnoreCase("Full Timer")) {
-            System.out.print("Category(1/2/3): ");
-            category = sc.nextInt();
-            
-            if(category == 1){
-                salaryPerDay = 75000;
-            } else if(category == 2){
-                salaryPerDay = 85000;
-            } else if(category == 3){
-                salaryPerDay = 100000;
-            }else {
-                System.out.print("Invalid category");
-                return;
-            }
-
-        } else {
-            System.out.print("Invalid category");
-            return;
-        }
-    System.out.print("Work Days: ");
-    workDays = sc.nextInt();
-    System.out.print("Overtime(hour): ");
+    System.out.print("Category: ");
+    category = sc.nextInt();
+    System.out.print("Work Hours: ");
+    workHours = sc.nextInt();
+    System.out.print("Salary Per Hour: ");
+    salaryPerHour = sc.nextInt();
+    System.out.print("Overtime: ");
     overtime = sc.nextInt();
 
-    basicSalary = workDays*salaryPerDay;
+    basicSalary = workHours*salaryPerHour;
     bonus = overtime*tip;
     salary = basicSalary + bonus + allowance;
 
@@ -101,6 +68,58 @@ public class EmployeePayrollSystem {
       default:
           System.out.println("Input invalid");
     }
-    sc.close();
-  }
+    double tax, netSalary;
+     if(position.equalsIgnoreCase("Part Timer")) {
+          
+          if (category == 1) {
+               if (salary > 50000) {
+                    tax = salary*0.02;
+               } else {
+                    tax = 0;
+               }
+          } else if (category == 2){
+               if (salary > 60000) {
+                    tax = salary*0.05;
+               } else {
+                    tax = 0;
+          } 
+          
+          } else {
+                    System.out.println("Category is invalid");
+                    return;
+               }
+               netSalary = salary - tax;
+               System.out.println("Employee salary: " + salary);
+               System.out.println("Tax:" + tax);
+               System.out.println("Net salary: " + netSalary);
+
+     }  else if (position.equalsIgnoreCase("Full Timer")){
+          if (category == 1) {
+               if (salary > 75000 ) {
+                    tax = salary*0.1;
+               } else {
+                    tax = 0;
+               }
+          } else if (category == 2 ) {
+               if (salary > 85000) {
+                    tax = salary*0.15;
+               }else {
+                    tax = 0;
+               }
+          } else if (category == 3 ) {
+               if (salary > 100000) {
+                    tax = salary*0.2;
+               } else {
+                    tax = 0;
+               }
+          } else {
+          System.out.println("Category is invalid");
+          return;
+          }
+          netSalary = salary - tax;
+          System.out.println("Employee salary: " + salary);
+          System.out.println("Tax:" + tax);
+          System.out.println("Net salary: " + netSalary);
+     }
+    }
 }
