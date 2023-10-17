@@ -3,17 +3,30 @@ import java.util.Scanner;
 public class EmployeePayrollSystem {
   public static void main(String args[]){ 
     Scanner sc = new Scanner(System.in);
+    System.out.println("============================================");
     System.out.println("              Employee Payroll              ");
     System.out.println("============================================");
      
-    String name, idNumber, payMethod, position;
+    String[] name = {"Aqilla Aprilly Kurnia Sari", "Nadia Pramudita", "Sherly Lutfi Azkiah Sulistyawati"};
+    String[] idNumber = {"2341720068", "2341720239", "2341720241"};
+    boolean loggedIn = false;
+    String payMethod, position;
     int workPeriod, category, workDays, overtime, bonus, salary;
     int salaryPerDay = 0, basicSalary = 0, tip = 10000,  allowance = 50000;
 
-    System.out.print("Name: ");
-    name = sc.nextLine();
-    System.out.print("ID Number: ");
-    idNumber = sc.nextLine();
+    int i = 0;
+    while(!loggedIn && i < name.length){
+        System.out.print("Name: ");
+        String inputName = sc.nextLine();
+        System.out.print("ID Number: ");
+        String inputID = sc.nextLine();
+
+        if (inputName.equals(name[i]) && inputID.equals(idNumber[i])) {
+            loggedIn = true;
+        }
+        i++;
+    }
+   
     System.out.print("Work Period(year): ");
     workPeriod = sc.nextInt();
     sc.nextLine();
@@ -48,9 +61,10 @@ public class EmployeePayrollSystem {
             }
 
         } else {
-            System.out.print("Invalid category");
+            System.out.print("Invalid Position");
             return;
         }
+     
     System.out.print("Work Days: ");
     workDays = sc.nextInt();
     System.out.print("Overtime(hour): ");
@@ -101,6 +115,6 @@ public class EmployeePayrollSystem {
       default:
           System.out.println("Input invalid");
     }
-    sc.close();
+     sc.close();
   }
 }
