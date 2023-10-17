@@ -67,5 +67,59 @@ public class EmployeePayrollSystem {
       default:
           System.out.println("Input invalid");
     }
-  }
+    double tax, netSalary;
+     if(position.equalsIgnoreCase("Part Timer")) {
+          
+          if (category == 1) {
+               if (salary > 50000) {
+                    tax = salary*0.02;
+               } else {
+                    tax = 0;
+               }
+          } else if (category == 2){
+               if (salary > 60000) {
+                    tax = salary*0.05;
+               } else {
+                    tax = 0;
+          } 
+          
+          } else {
+                    System.out.println("Category is invalid");
+                    return;
+               }
+               netSalary = salary - tax;
+               System.out.println("Employee salary: " + salary);
+               System.out.println("Tax:" + tax);
+               System.out.println("Net salary: " + netSalary);
+
+     }  else if (position.equalsIgnoreCase("Full Timer")){
+          if (category == 1) {
+               if (salary > 75000 ) {
+                    tax = salary*0.1;
+               } else {
+                    tax = 0;
+               }
+          } else if (category == 2 ) {
+               if (salary > 85000) {
+                    tax = salary*0.15;
+               }else {
+                    tax = 0;
+               }
+          } else if (category == 3 ) {
+               if (salary > 100000) {
+                    tax = salary*0.2;
+               } else {
+                    tax = 0;
+               }
+          } else {
+          System.out.println("Category is invalid");
+          return;
+          }
+          netSalary = salary - tax;
+          System.out.println("Employee salary: " + salary);
+          System.out.println("Tax:" + tax);
+          System.out.println("Net salary: " + netSalary);
+     }
+    }
 }
+
