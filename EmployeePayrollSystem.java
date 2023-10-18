@@ -7,23 +7,70 @@ public class EmployeePayrollSystem {
     System.out.println("              Employee Payroll              ");
     System.out.println("============================================");
      
-    String name, payMethod;
-    int workPeriod, category, workHours, salaryPerHour, basicSalary, overtime,  tip = 10000, bonus, salary, allowance = 50000;
-     
-    System.out.print("Name: ");
-    name = sc.nextLine();
-    System.out.print("Work Period: ");
+    String[] name = {"Aqilla Aprilly Kurnia Sari", "Nadia Pramudita", "Sherly Lutfi Azkiah Sulistyawati"};
+    String[] idNumber = {"2341720068", "2341720239", "2341720241"};
+    boolean loggedIn = false;
+    String payMethod, position;
+    int workPeriod, category, workDays, overtime, bonus, salary;
+    int salaryPerDay = 0, basicSalary = 0, tip = 10000,  allowance = 50000;
+
+    int i = 0;
+    while(!loggedIn && i < name.length){
+        System.out.print("Name: ");
+        String inputName = sc.nextLine();
+        System.out.print("ID Number: ");
+        String inputID = sc.nextLine();
+
+        if (inputName.equals(name[i]) && inputID.equals(idNumber[i])) {
+            loggedIn = true;
+        }
+        i++;
+    }
+   
+    System.out.print("Work Period(year): ");
     workPeriod = sc.nextInt();
-    System.out.print("Category: ");
-    category = sc.nextInt();
-    System.out.print("Work Hours: ");
-    workHours = sc.nextInt();
-    System.out.print("Salary Per Hour: ");
-    salaryPerHour = sc.nextInt();
-    System.out.print("Overtime: ");
+    sc.nextLine();
+    System.out.print("Position(Part Timer/Full Timer): ");
+    position = sc.nextLine();
+        if(position.equalsIgnoreCase("Part Timer")) {
+            System.out.print("Category(1/2): ");
+            category = sc.nextInt();
+
+            if(category == 1){
+                salaryPerDay = 50000;
+            } else if(category == 2){
+                salaryPerDay = 60000;
+            } else {
+                System.out.print("Invalid category");
+                return;
+            }
+
+        } else if(position.equalsIgnoreCase("Full Timer")) {
+            System.out.print("Category(1/2/3): ");
+            category = sc.nextInt();
+            
+            if(category == 1){
+                salaryPerDay = 75000;
+            } else if(category == 2){
+                salaryPerDay = 85000;
+            } else if(category == 3){
+                salaryPerDay = 100000;
+            }else {
+                System.out.print("Invalid category");
+                return;
+            }
+
+        } else {
+            System.out.print("Invalid Position");
+            return;
+        }
+     
+    System.out.print("Work Days: ");
+    workDays = sc.nextInt();
+    System.out.print("Overtime(hour): ");
     overtime = sc.nextInt();
 
-    basicSalary = workHours*salaryPerHour;
+    basicSalary = workDays*salaryPerDay;
     bonus = overtime*tip;
     salary = basicSalary + bonus + allowance;
 
@@ -68,16 +115,15 @@ public class EmployeePayrollSystem {
       default:
           System.out.println("Input invalid");
     }
-    double tax, netSalary;
+  double tax, netSalary;
      if(position.equalsIgnoreCase("Part Timer")) {
-          
           if (category == 1) {
                if (salary > 50000) {
                     tax = salary*0.02;
                } else {
                     tax = 0;
                }
-          } else if (category == 2){
+          } else if (category == 2) {
                if (salary > 60000) {
                     tax = salary*0.05;
                } else {
@@ -121,5 +167,5 @@ public class EmployeePayrollSystem {
           System.out.println("Tax:" + tax);
           System.out.println("Net salary: " + netSalary);
      }
-    }
+  }
 }
