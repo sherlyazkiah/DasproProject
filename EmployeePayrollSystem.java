@@ -115,15 +115,16 @@ public class EmployeePayrollSystem {
       default:
           System.out.println("Input invalid");
     }
-  double tax, netSalary;
+    double tax, netSalary;
      if(position.equalsIgnoreCase("Part Timer")) {
+          
           if (category == 1) {
                if (salary > 50000) {
                     tax = salary*0.02;
                } else {
                     tax = 0;
                }
-          } else if (category == 2) {
+          } else if (category == 2){
                if (salary > 60000) {
                     tax = salary*0.05;
                } else {
@@ -167,5 +168,5 @@ public class EmployeePayrollSystem {
           System.out.println("Tax:" + tax);
           System.out.println("Net salary: " + netSalary);
      }
-  }
+    }
 }
