@@ -184,10 +184,10 @@ public class EmployeePayrollSystem {
         int index = findEmployeeIndex(name, idNumber, month);
         if (index != -1) {
             System.out.println("\nSalary Information:");
-            System.out.println("-----------------------------------------------------------------------------------------");
+            System.out.println("------------------------------------------------------------------------------------------");
             System.out.printf("%-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s%n",
             "Month", "Basic Salary", "Bonus", "Allowance", "Salary", "Tax", "Net Salary");
-            System.out.println("-----------------------------------------------------------------------------------------");
+            System.out.println("------------------------------------------------------------------------------------------");
             displaySalaryInformation(index);
         } else {
             System.out.println("Employee not found/wrong ID number for the specified month.");
@@ -206,10 +206,10 @@ public class EmployeePayrollSystem {
     
         boolean employeeFound = false;
 
-        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------");
         System.out.printf("%-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s%n",
             "Month", "Basic Salary", "Bonus", "Allowance", "Salary", "Tax", "Net Salary");
-        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------");
     
         for (int i = 0; i < employeeCount; i++) {
             if (names[i].equalsIgnoreCase(name) && idNumbers[i].equalsIgnoreCase(idNumber)) {
@@ -252,17 +252,17 @@ public class EmployeePayrollSystem {
         System.out.printf("%-10s | %-10s   | %-10s | %-10s | %-10s | %-10s | %-10s%n",
             months[index], basicSalary, bonus, allowances, salary, tax, netSalary);
     }
-    
+
     private static void displayEmployeeHistory() {
         if (historyCount > 0) {
             System.out.println("\nEmployee Data History:");
-            System.out.println("-------------------------------------------------------------------------------------------------------------------");
-            System.out.printf("%-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s%n",
-                    "Name", "ID Number", "Month", "Work Period", "Position", "Work Days", "Overtime", "Salary Per Day" , "Net Salary");
-            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------------------------------------------");
+            System.out.printf("%-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s%n" ,
+                    "Name", "ID Number", "Month", "Work Period", "Position", "Work Days", "Overtime", "Salary Per Day");
+            System.out.println("----------------------------------------------------------------------------------------------------------");
 
             for (int i = 0; i < historyCount; i++) {
-                System.out.printf("%-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s%n",
+                System.out.printf("%-10s | %-10s | %-10s | %-10s  | %-10s | %-10s | %-10s | %-10s%n",
                         employeeHistory[i][0], employeeHistory[i][1], employeeHistory[i][2],
                         employeeHistory[i][3], employeeHistory[i][4], employeeHistory[i][5],
                         employeeHistory[i][6], employeeHistory[i][7]);
