@@ -174,6 +174,11 @@ public class EmployeePayrollSystem {
     
         int index = findEmployeeIndex(name, idNumber, month);
         if (index != -1) {
+            System.out.println("\nSalary Information:");
+            System.out.println("-----------------------------------------------------------------------------------------");
+            System.out.printf("%-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s%n",
+            "Month", "Basic Salary", "Bonus", "Allowance", "Salary", "Tax", "Net Salary");
+            System.out.println("-----------------------------------------------------------------------------------------");
             displaySalaryInformation(index);
         } else {
             System.out.println("Employee not found/wrong ID number for the specified month.");
@@ -192,6 +197,11 @@ public class EmployeePayrollSystem {
     
         boolean employeeFound = false;
     
+        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.printf("%-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s%n",
+            "Month", "Basic Salary", "Bonus", "Allowance", "Salary", "Tax", "Net Salary");
+        System.out.println("-----------------------------------------------------------------------------------------");
+
         for (int i = 0; i < employeeCount; i++) {
             if (names[i].equalsIgnoreCase(name) && idNumbers[i].equalsIgnoreCase(idNumber)) {
                 displaySalaryInformation(i);
@@ -230,24 +240,8 @@ public class EmployeePayrollSystem {
     
         netSalary = salary - tax;
     
-        String[][] salaryInfo = {
-                {"Month", months[index]},
-                {"Basic Salary", String.valueOf(basicSalary)},
-                {"Bonus", String.valueOf(bonus)},
-                {"Allowance", String.valueOf(allowances)},
-                {"Salary", String.valueOf(salary)},
-                {"Tax", String.valueOf(tax)},
-                {"Net Salary", String.valueOf(netSalary)}
-        };
-    
-        System.out.println("\nSalary Information:");
-        System.out.println("-----------------------------------------------------------------------------------------");
-        System.out.printf("%-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s%n", "Month", "Basic Salary", "Bonus",
-                "Allowance", "Salary", "Tax", "Net Salary");
-        System.out.println("-----------------------------------------------------------------------------------------");
-    
-        System.out.printf("%-10s | %-10s   | %-10s | %-10s | %-10s | %-10s | %-10s%n", salaryInfo[0][1], salaryInfo[1][1],
-                salaryInfo[2][1], salaryInfo[3][1], salaryInfo[4][1], salaryInfo[5][1], salaryInfo[6][1]);
+        System.out.printf("%-10s | %-10s   | %-10s | %-10s | %-10s | %-10s | %-10s%n",
+            months[index], basicSalary, bonus, allowances, salary, tax, netSalary);
     }
 
 }
