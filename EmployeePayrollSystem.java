@@ -233,7 +233,7 @@ public class EmployeePayrollSystem {
                 tax = 0;
             }
         } else {
-            System.out.println("Invalid position");
+            System.out.println("Invalid position!");
             return;
         }
     
