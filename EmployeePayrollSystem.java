@@ -10,6 +10,8 @@ public class EmployeePayrollSystem {
     private static int[] workDays = new int[MAX_EMPLOYEES];
     private static int[] overtimes = new int[MAX_EMPLOYEES];
     private static int[] salaryPerDays = new int[MAX_EMPLOYEES];
+    private static String[][] employeeHistory = new String[MAX_EMPLOYEES][8]; // 2D array to store employee data
+    private static int historyCount = 0;
     private static int employeeCount = 0;
 
     public static void main(String args[]) {
@@ -33,26 +35,22 @@ public class EmployeePayrollSystem {
     
             switch (choice) {
                 case 1:
-
                     addEmployee(scanner);
                     break;
-
                 case 2:
-
                     checkSalary();
                     break;
-
                 case 3:
-
+                    displayEmployeeHistory();
+                    break;
+                case 4:
                     System.out.println("Exiting the program. Goodbye!");
                     break;
-
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-    
-        } while (choice != 3);
-    
+        } while (choice != 4);
+
         scanner.close();
     }
 
@@ -60,7 +58,8 @@ public class EmployeePayrollSystem {
         System.out.println("\nEmployee Payroll System Menu:");
         System.out.println("1. Add Employee");
         System.out.println("2. Check Salary");
-        System.out.println("3. Exit");
+        System.out.println("3. History");
+        System.out.println("4. Exit");
     }
 
     private static void addEmployee(Scanner scanner) {
@@ -120,6 +119,16 @@ public class EmployeePayrollSystem {
             System.out.print("Overtime(hour): ");
             overtimes[employeeCount] = scanner.nextInt();
 
+            employeeHistory[historyCount][0] = names[employeeCount];
+            employeeHistory[historyCount][1] = idNumbers[employeeCount];
+            employeeHistory[historyCount][2] = months[employeeCount];
+            employeeHistory[historyCount][3] = String.valueOf(workPeriods[employeeCount]);
+            employeeHistory[historyCount][4] = positions[employeeCount];
+            employeeHistory[historyCount][5] = String.valueOf(workDays[employeeCount]);
+            employeeHistory[historyCount][6] = String.valueOf(overtimes[employeeCount]);
+            employeeHistory[historyCount][7] = String.valueOf(salaryPerDays[employeeCount]);
+
+            historyCount++;
             employeeCount++;
 
             System.out.println("Employee added successfully!");
@@ -174,11 +183,6 @@ public class EmployeePayrollSystem {
     
         int index = findEmployeeIndex(name, idNumber, month);
         if (index != -1) {
-            System.out.println("\nSalary Information:");
-            System.out.println("-----------------------------------------------------------------------------------------");
-            System.out.printf("%-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s%n",
-            "Month", "Basic Salary", "Bonus", "Allowance", "Salary", "Tax", "Net Salary");
-            System.out.println("-----------------------------------------------------------------------------------------");
             displaySalaryInformation(index);
         } else {
             System.out.println("Employee not found/wrong ID number for the specified month.");
@@ -197,11 +201,6 @@ public class EmployeePayrollSystem {
     
         boolean employeeFound = false;
     
-        System.out.println("-----------------------------------------------------------------------------------------");
-        System.out.printf("%-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s%n",
-            "Month", "Basic Salary", "Bonus", "Allowance", "Salary", "Tax", "Net Salary");
-        System.out.println("-----------------------------------------------------------------------------------------");
-
         for (int i = 0; i < employeeCount; i++) {
             if (names[i].equalsIgnoreCase(name) && idNumbers[i].equalsIgnoreCase(idNumber)) {
                 displaySalaryInformation(i);
@@ -239,9 +238,44 @@ public class EmployeePayrollSystem {
         }
     
         netSalary = salary - tax;
+
     
-        System.out.printf("%-10s | %-10s   | %-10s | %-10s | %-10s | %-10s | %-10s%n",
-            months[index], basicSalary, bonus, allowances, salary, tax, netSalary);
+        String[][] salaryInfo = {
+                {"Month", months[index]},
+                {"Basic Salary", String.valueOf(basicSalary)},
+                {"Bonus", String.valueOf(bonus)},
+                {"Allowance", String.valueOf(allowances)},
+                {"Salary", String.valueOf(salary)},
+                {"Tax", String.valueOf(tax)},
+                {"Net Salary", String.valueOf(netSalary)}
+        };
+    
+        System.out.println("\nSalary Information:");
+        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.printf("%-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s%n", "Month", "Basic Salary", "Bonus",
+                "Allowance", "Salary", "Tax", "Net Salary");
+        System.out.println("-----------------------------------------------------------------------------------------");
+    
+        System.out.printf("%-10s | %-10s   | %-10s | %-10s | %-10s | %-10s | %-10s%n", salaryInfo[0][1], salaryInfo[1][1],
+                salaryInfo[2][1], salaryInfo[3][1], salaryInfo[4][1], salaryInfo[5][1], salaryInfo[6][1]);
+    }
+    private static void displayEmployeeHistory() {
+        if (historyCount > 0) {
+            System.out.println("\nEmployee Data History:");
+            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("%-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s | %-10s%n",
+                    "Name", "ID Number", "Month", "Work Period", "Position", "Work Days", "Overtime", "Salary Per Day" , "Net Salary");
+            System.out.println("-------------------------------------------------------------------------------------------------------------------");
+
+            for (int i = 0; i < historyCount; i++) {
+                System.out.printf("%-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s%n",
+                        employeeHistory[i][0], employeeHistory[i][1], employeeHistory[i][2],
+                        employeeHistory[i][3], employeeHistory[i][4], employeeHistory[i][5],
+                        employeeHistory[i][6], employeeHistory[i][7]);
+            }
+        } else {
+            System.out.println("No employee data in the history.");
+        }
     }
 
 }
