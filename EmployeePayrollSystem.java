@@ -41,15 +41,18 @@ public class EmployeePayrollSystem {
                     checkSalary();
                     break;
                 case 3:
-                    displayEmployeeHistory();
+                    checkHighestSalary();
                     break;
                 case 4:
+                    displayEmployeeHistory();
+                    break;
+                case 5:
                     System.out.println("Exiting the program. Goodbye!");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-        } while (choice != 4);
+        } while (choice != 5);
 
         scanner.close();
     }
@@ -58,8 +61,9 @@ public class EmployeePayrollSystem {
         System.out.println("\nEmployee Payroll System Menu:");
         System.out.println("1. Add Employee");
         System.out.println("2. Check Salary");
-        System.out.println("3. History");
-        System.out.println("4. Exit");
+        System.out.println("3. Check Highest Salary");
+        System.out.println("4. History");
+        System.out.println("5. Exit");
     }
 
     private static void addEmployee(Scanner scanner) {
@@ -251,6 +255,33 @@ public class EmployeePayrollSystem {
 
         System.out.printf("%-10s | %-10s   | %-10s | %-10s | %-10s | %-10s | %-10s%n",
             months[index], basicSalary, bonus, allowances, salary, tax, netSalary);
+    }
+
+    private static void checkHighestSalary() {
+        if (employeeCount > 0) {
+            int highestSalary = 0;
+            int highestSalaryIndex = 0;
+
+            for (int i = 0; i < employeeCount; i++) {
+                int basicSalary = workDays[i]*salaryPerDays[i];
+                int bonus = overtimes[i]*10000;
+                int allowances = 50000;
+                int salary = basicSalary + bonus + allowances;
+
+                if (salary > highestSalary) {
+                    highestSalary = salary;
+                    highestSalaryIndex = i;
+                }
+            }
+        
+            System.out.println("\nEmployee with the Highest Salary: ");
+            System.out.println("Name: " +names[highestSalaryIndex]);
+            System.out.println("ID Number: " + idNumbers[highestSalaryIndex]);
+            System.out.println("Month: " +months[highestSalaryIndex]);
+            System.out.println("Salary: " +highestSalary);
+        } else {
+            System.out.println("Employee not found.");
+        }
     }
 
     private static void displayEmployeeHistory() {
