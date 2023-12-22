@@ -25,10 +25,9 @@ public class EmployeePayrollSystem {
             displayMenu();
             System.out.print("Enter your choice: ");
             
-            // Validate input to ensure it's an integer
             while (!scanner.hasNextInt()) {
                 System.out.println("Invalid input. Please enter a number.");
-                scanner.next(); // Consume the invalid input
+                scanner.next(); 
             }
             
             choice = scanner.nextInt();
@@ -69,13 +68,13 @@ public class EmployeePayrollSystem {
     private static void addEmployee(Scanner scanner) {
         if (employeeCount < MAX_EMPLOYEES) {
             System.out.print("\nEnter employee name: ");
-            names[employeeCount] = scanner.next();
+            names[employeeCount] = scanner.nextLine();
 
             System.out.print("Enter ID number: ");
-            idNumbers[employeeCount] = scanner.next();
+            idNumbers[employeeCount] = scanner.nextLine();
 
             System.out.print("Enter month: ");
-            months[employeeCount] = scanner.next();
+            months[employeeCount] = scanner.nextLine();
 
             System.out.print("Work period(year): ");
             workPeriods[employeeCount] = scanner.nextInt();
@@ -163,12 +162,10 @@ public class EmployeePayrollSystem {
     
         switch (option) {
             case 1:
-
                 checkSalaryForSpecificMonth(scanner);
                 break;
     
             case 2:
-
                 checkSalaryForAllMonths();
                 break;
     
@@ -179,11 +176,11 @@ public class EmployeePayrollSystem {
     
     private static void checkSalaryForSpecificMonth(Scanner scanner) {
         System.out.print("\nEnter employee name: ");
-        String name = scanner.next();
+        String name = scanner.nextLine();
         System.out.print("Enter ID number: ");
-        String idNumber = scanner.next();
+        String idNumber = scanner.nextLine();
         System.out.print("Enter month: ");
-        String month = scanner.next();
+        String month = scanner.nextLine();
     
         int index = findEmployeeIndex(name, idNumber, month);
         if (index != -1) {
@@ -202,9 +199,9 @@ public class EmployeePayrollSystem {
         Scanner scanner = new Scanner(System.in);
     
         System.out.print("\nEnter employee name: ");
-        String name = scanner.next();
+        String name = scanner.nextLine();
         System.out.print("Enter ID number: ");
-        String idNumber = scanner.next();
+        String idNumber = scanner.nextLine();
     
         System.out.println("\nSalary Information for All Months:");
     
