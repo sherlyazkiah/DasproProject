@@ -68,13 +68,13 @@ public class EmployeePayrollSystem {
     private static void addEmployee(Scanner scanner) {
         if (employeeCount < MAX_EMPLOYEES) {
             System.out.print("\nEnter employee name: ");
-            names[employeeCount] = scanner.nextLine();
+            names[employeeCount] = scanner.next();
 
             System.out.print("Enter ID number: ");
-            idNumbers[employeeCount] = scanner.nextLine();
+            idNumbers[employeeCount] = scanner.next();
 
             System.out.print("Enter month: ");
-            months[employeeCount] = scanner.nextLine();
+            months[employeeCount] = scanner.next();
 
             System.out.print("Work period(year): ");
             workPeriods[employeeCount] = scanner.nextInt();
